@@ -23,11 +23,14 @@ class JsonViewModel : ViewModel() {
     private val _applicables = MutableLiveData<List<Applicable>>()
     val applicables: LiveData<List<Applicable>> = _applicables
 
-    init {
-        getJson()
-    }
+    private val _applicable = MutableLiveData<Applicable>()
+    val applicable: LiveData<Applicable> = _applicable
 
-    private fun getJson() {
+//    init {
+//        getJson()
+//    }
+
+    fun getJson() {
         viewModelScope.launch {
             _status.value = SorixApiStatus.LOADING
             try {
@@ -42,5 +45,9 @@ class JsonViewModel : ViewModel() {
                 _status.value = SorixApiStatus.ERROR
             }
         }
+    }
+
+    fun onApplicableClicked(applicable: Applicable) {
+        _applicable.value = applicable
     }
 }
