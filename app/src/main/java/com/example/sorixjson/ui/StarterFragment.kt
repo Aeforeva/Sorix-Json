@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.sorixjson.R
@@ -19,15 +20,16 @@ class StarterFragment : Fragment() {
 //    private var _binding: FragmentSelectedBinding? = null
 //    private val binding get() = _binding!!
 
+//    private lateinit var binding: FragmentStarterBinding
+
     private val viewModel: JsonViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        // return inflater.inflate(R.layout.fragment_starter, container, false)
         val binding = FragmentStarterBinding.inflate(inflater)
+//        binding = FragmentStarterBinding.inflate(inflater)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
