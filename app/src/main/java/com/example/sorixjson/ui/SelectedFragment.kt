@@ -6,10 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
-import com.example.sorixjson.R
 import com.example.sorixjson.databinding.FragmentSelectedBinding
-import com.example.sorixjson.databinding.FragmentStarterBinding
 import com.example.sorixjson.model.JsonViewModel
 
 class SelectedFragment : Fragment() {

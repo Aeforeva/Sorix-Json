@@ -23,15 +23,6 @@ class JsonViewModel : ViewModel() {
     private val _applicables = MutableLiveData<List<Applicable>>()
     val applicables: LiveData<List<Applicable>> = _applicables
 
-
-
-    private val _testNum = MutableLiveData<Int>(0)
-    val testNum: LiveData<Int> = _testNum
-
-    fun incNum() {
-        _testNum.value = _testNum.value?.plus(1)
-    }
-
     init {
         getJson()
     }
@@ -41,9 +32,9 @@ class JsonViewModel : ViewModel() {
             _status.value = SorixApiStatus.LOADING
             try {
                 _sorixJson.value = SorixApi.retrofitService.getSorixJson()
-                Log.i("Sorix API", _sorixJson.value.toString())
+                Log.i("Sorix API JSON", _sorixJson.value.toString())
                 _applicables.value = _sorixJson.value?.networks?.applicable
-                Log.i("Sorix API",  _applicables.value.toString())
+                Log.i("Sorix API applicables",  _applicables.value.toString())
                 _status.value = SorixApiStatus.DONE
             } catch (e: Exception) {
                 _errorMsg.value = e.message
