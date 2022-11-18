@@ -17,8 +17,10 @@ package com.example.sorixjson
 
 import android.view.View
 import android.widget.ImageView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.sorixjson.ui.ApplicableListAdapter
 import com.example.sorixjson.model.Applicable
 import com.example.sorixjson.model.SorixApiStatus
@@ -31,6 +33,14 @@ import com.example.sorixjson.model.SorixApiStatus
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Applicable>?) {
     val adapter = recyclerView.adapter as ApplicableListAdapter
     adapter.submitList(data)
+}
+
+@BindingAdapter("imageUrl")
+fun bindImage(imgView: ImageView, imgUrl: String?) {
+    imgUrl?.let {
+        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+        imgView.load(imgUri)
+    }
 }
 
 /**

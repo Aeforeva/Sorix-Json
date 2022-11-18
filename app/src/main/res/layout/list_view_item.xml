@@ -41,6 +41,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/card_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:imageUrl="@{applicable.links.logo}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/applicable_lable"
                 android:layout_width="wrap_content"
@@ -51,23 +59,9 @@
                 android:text="@{applicable.label}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/card_image"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="label" />
-
-            <TextView
-                android:id="@+id/applicable_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:text="@{applicable.code.toString()}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="code" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
