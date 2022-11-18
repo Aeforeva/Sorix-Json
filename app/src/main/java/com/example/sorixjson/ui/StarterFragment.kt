@@ -7,29 +7,31 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.sorixjson.R
+import com.example.sorixjson.databinding.FragmentSelectedBinding
+import com.example.sorixjson.databinding.FragmentStarterBinding
+import com.example.sorixjson.model.JsonViewModel
 
 class StarterFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+//    private var _binding: FragmentSelectedBinding? = null
+//    private val binding get() = _binding!!
+
+    private val viewModel: JsonViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_starter, container, false)
-    }
+        // return inflater.inflate(R.layout.fragment_starter, container, false)
+        val binding = FragmentStarterBinding.inflate(inflater)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val button = view.findViewById<Button>(R.id.button)
-        button.setOnClickListener {
-            Toast.makeText(context, "test", Toast.LENGTH_SHORT).show()
-            view.findNavController().navigate(R.id.action_starterFragment_to_selectedFragment)
-        }
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
+        return binding.root
     }
 }
