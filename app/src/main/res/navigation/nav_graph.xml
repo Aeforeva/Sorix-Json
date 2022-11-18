@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/starterFragment">
+
+    <fragment
+        android:id="@+id/starterFragment"
+        android:name="com.example.sorixjson.ui.StarterFragment"
+        android:label="fragment_starter"
+        tools:layout="@layout/fragment_starter" >
+        <action
+            android:id="@+id/action_starterFragment_to_selectedFragment"
+            app:destination="@id/selectedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectedFragment"
+        android:name="com.example.sorixjson.ui.SelectedFragment"
+        android:label="fragment_selected"
+        tools:layout="@layout/fragment_selected" />
+</navigation>
