@@ -34,6 +34,9 @@ class StarterFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        binding.button2.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_starterFragment_to_selectedFragment)
+        }
         return binding.root
     }
 }
