@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sorixjson.R
 import kotlinx.coroutines.launch
 
 enum class SorixApiStatus { LOADING, ERROR, DONE }
@@ -25,6 +26,8 @@ class JsonViewModel : ViewModel() {
 
     private val _applicable = MutableLiveData<Applicable>()
     val applicable: LiveData<Applicable> = _applicable
+
+    val outPutString = mutableListOf<String>()
 
 //    init {
 //        getJson()

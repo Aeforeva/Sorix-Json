@@ -16,10 +16,13 @@
 
 package com.example.sorixjson.ui
 
+import android.annotation.SuppressLint
 import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sorixjson.R
 import com.example.sorixjson.model.InputElement
@@ -48,13 +51,13 @@ class InputAdapter(
         val item = dataset?.get(position)
 
         when (item?.name) {
-            "number" -> holder.textView.hint = "Номер карты"
-            "expiryMonth" -> holder.textView.hint = "месяц"
-            "expiryYear" -> holder.textView.hint = "год"
-            "verificationCode" -> holder.textView.hint = "CVV"
-            "holderName" -> holder.textView.hint = "Имя держателя карты"
-            "iban" -> holder.textView.hint = "ИБАН"
-            "bic" -> holder.textView.hint = "БИК"
+//            "number" -> holder.textView.hint = "Номер карты"
+//            "expiryMonth" -> holder.textView.hint = "месяц"
+//            "expiryYear" -> holder.textView.hint = "год"
+//            "verificationCode" -> holder.textView.hint = "CVV"
+//            "holderName" -> holder.textView.hint = "Имя держателя карты"
+//            "iban" -> holder.textView.hint = "ИБАН"
+//            "bic" -> holder.textView.hint = "БИК"
             else -> holder.textView.hint = item?.name
         }
 
@@ -63,6 +66,10 @@ class InputAdapter(
             "integer" -> holder.editText.inputType = InputType.TYPE_CLASS_NUMBER
             else -> holder.editText.inputType = InputType.TYPE_CLASS_TEXT
         }
+
+//        holder.editText.id = ViewCompat.generateViewId()
+        holder.editText.id = position
+        Log.d("ID", holder.editText.id.toString() + holder.editText.hint.toString())
     }
 
     override fun getItemCount() = dataset?.size ?: 0
