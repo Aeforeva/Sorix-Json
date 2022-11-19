@@ -53,19 +53,23 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
  * hides the image view.
  */
 
-//@BindingAdapter("apiStatus")
-//fun bindStatus(statusImageView: ImageView, status: SorixApiStatus?) {
-//    when(status) {
-//        SorixApiStatus.LOADING -> {
-//            statusImageView.visibility = View.VISIBLE
-//            statusImageView.setImageResource(R.drawable.loading_animation)
-//        }
-//        SorixApiStatus.DONE -> {
-//            statusImageView.visibility = View.GONE
-//        }
-//        SorixApiStatus.ERROR -> {
-//            statusImageView.visibility = View.VISIBLE
-//            statusImageView.setImageResource(R.drawable.ic_connection_error)
-//        }
-//    }
-//}
+@BindingAdapter("apiStatus")
+fun bindStatus(statusImageView: ImageView, status: SorixApiStatus?) {
+    when(status) {
+        SorixApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.loading_animation)
+        }
+        SorixApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+        SorixApiStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.ic_connection_error)
+        }
+        else -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.ic_baseline_accessible_forward_24)
+        }
+    }
+}
