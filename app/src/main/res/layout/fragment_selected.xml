@@ -15,53 +15,74 @@
         android:layout_height="match_parent"
         tools:context=".ui.SelectedFragment">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/card_image2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:imageUrl="@{viewModel.applicable.links.logo}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/applicable_label2"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:padding="8dp"
-                    android:text="@{viewModel.applicable.label}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toEndOf="@id/card_image2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="label" />
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view2"
-                    android:layout_width="match_parent"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/card_image2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="TODO"
+                            app:imageUrl="@{viewModel.applicable.links.logo}"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/applicable_label2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:padding="8dp"
+                            android:text="@{viewModel.applicable.label}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                            android:textSize="18sp"
+                            app:layout_constraintStart_toEndOf="@id/card_image2"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="label" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycler_view2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/applicable_label2" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="16dp"
+                    android:text="Button"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/applicable_label2" />
+                    app:layout_constraintTop_toBottomOf="@id/card" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </com.google.android.material.card.MaterialCardView>
-
+        </ScrollView>
     </FrameLayout>
 </layout>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.sorixjson.databinding.FragmentSelectedBinding
 import com.example.sorixjson.model.JsonViewModel
@@ -23,6 +24,14 @@ class SelectedFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        val myDataset = viewModel.applicable.value?.inputElements
+        binding.recyclerView2.adapter = InputAdapter(this, myDataset)
+        binding.recyclerView2.setHasFixedSize(true)
+
+        binding.button.setOnClickListener {
+            Toast.makeText(context, "RIP $$$", Toast.LENGTH_SHORT).show()
+        }
 
         return binding.root
     }
