@@ -33,8 +33,12 @@ class StarterFragment : Fragment() {
 
         binding.recyclerView.adapter = ApplicableListAdapter(ApplicableListener { applicable ->
             viewModel.onApplicableClicked(applicable)
-            findNavController()
-                .navigate(R.id.action_starterFragment_to_selectedFragment)
+            val action = StarterFragmentDirections.actionStarterFragmentToSelectedFragment(
+                fragmentSelected = applicable.label
+            )
+            findNavController().navigate(action)
+            // no action navigation
+//            findNavController().navigate(R.id.action_starterFragment_to_selectedFragment)
         })
 
         return binding.root

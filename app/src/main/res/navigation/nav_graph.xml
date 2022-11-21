@@ -17,6 +17,11 @@
     <fragment
         android:id="@+id/selectedFragment"
         android:name="com.example.sorixjson.ui.SelectedFragment"
-        android:label="fragment_selected"
-        tools:layout="@layout/fragment_selected" />
+        android:label="{fragmentSelected}"
+        tools:layout="@layout/fragment_selected">
+        <argument
+            android:name="fragmentSelected"
+            android:defaultValue="Selected"
+            app:argType="string" />
+    </fragment>
 </navigation>
