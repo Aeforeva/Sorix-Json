@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sorixjson.model.Applicable
+import com.example.sorixjson.model.Response
 import com.example.sorixjson.model.SomeData
 import com.example.sorixjson.network.SorixApi
 import kotlinx.coroutines.launch
@@ -29,12 +30,13 @@ class JsonViewModel : ViewModel() {
     private val _applicable = MutableLiveData<Applicable>()
     val applicable: LiveData<Applicable> = _applicable
 
+    var response = Response()
     val outPutString = mutableListOf<String>()
 
-//    init {
-//        getJson()
-//    }
-
+    // We can call getJson() here or in fragment
+    init {
+        getJson()
+    }
     fun getJson() {
         viewModelScope.launch {
             _status.value = SorixApiStatus.LOADING
@@ -42,7 +44,7 @@ class JsonViewModel : ViewModel() {
                 _sorixJson.value = SorixApi.retrofitService.getSorixJson()
                 Log.i("Sorix API JSON", _sorixJson.value.toString())
                 _applicables.value = _sorixJson.value?.networks?.applicable
-                Log.i("Sorix API applicables",  _applicables.value.toString())
+                Log.i("Sorix API applicables", _applicables.value.toString())
                 _status.value = SorixApiStatus.DONE
             } catch (e: Exception) {
                 _errorMsg.value = e.message
@@ -51,7 +53,24 @@ class JsonViewModel : ViewModel() {
             }
         }
     }
-
+    fun postResponse() {
+        viewModelScope.launch {
+            try {
+                SorixApi.retrofitServiceSend.postObj(response)
+            } catch (e: Exception) {
+                Log.i("Sorix API ERROR", e.toString())
+            }
+        }
+    }
+    fun putResponse() {
+        viewModelScope.launch {
+            try {
+                SorixApi.retrofitServiceSend.putObj(response)
+            } catch (e: Exception) {
+                Log.i("Sorix API ERROR", e.toString())
+            }
+        }
+    }
     fun onApplicableClicked(applicable: Applicable) {
         _applicable.value = applicable
     }

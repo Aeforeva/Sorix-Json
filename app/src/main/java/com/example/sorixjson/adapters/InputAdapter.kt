@@ -51,7 +51,7 @@ class InputAdapter(
 
 //        holder.editText.id = ViewCompat.generateViewId()
         holder.editText.id = position
-        Log.d("ID", holder.editText.id.toString() + holder.editText.hint.toString())
+        Log.d("ID", "position: $position - ${holder.editText.hint}")
     }
 
     override fun getItemCount() = dataset?.size ?: 0

@@ -69,7 +69,7 @@ fun bindStatus(statusImageView: ImageView, status: SorixApiStatus?) {
         }
         else -> {
             statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.ic_baseline_accessible_forward_24)
+            statusImageView.setImageResource(android.R.drawable.alert_dark_frame)
         }
     }
 }

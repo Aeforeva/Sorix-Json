@@ -26,9 +26,9 @@ class StarterFragment : Fragment() {
     ): View {
         val binding = FragmentStarterBinding.inflate(inflater)
 //        binding = FragmentStarterBinding.inflate(inflater)
-        viewModel.getJson()
+//        viewModel.getJson()
 
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
         binding.recyclerView.adapter = ApplicableListAdapter(ApplicableListener { applicable ->

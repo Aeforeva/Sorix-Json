@@ -21,7 +21,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card"
@@ -75,13 +75,33 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button"
                     android:layout_width="0dp"
-                    app:layout_constraintWidth_percent="0.7"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Button"
+                    android:layout_marginTop="4dp"
+                    android:text="Send Intent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/card" />
+                    app:layout_constraintTop_toBottomOf="@id/card"
+                    app:layout_constraintWidth_percent="0.7" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_put"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Put"
+                    app:layout_constraintStart_toStartOf="@id/button"
+                    app:layout_constraintTop_toBottomOf="@id/button"
+                    app:layout_constraintWidth_percent="0.33" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_post"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Post"
+                    app:layout_constraintEnd_toEndOf="@id/button"
+                    app:layout_constraintTop_toBottomOf="@id/button"
+                    app:layout_constraintWidth_percent="0.33" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
