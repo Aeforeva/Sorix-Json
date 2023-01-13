@@ -1,4 +1,4 @@
-package com.example.sorixjson.ui
+package com.example.sorixjson.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sorixjson.databinding.ListViewItemBinding
 import com.example.sorixjson.model.Applicable
 
-class ApplicableListAdapter (val clickListener: ApplicableListener) :
+class ApplicableListAdapter (private val clickListener: ApplicableListener) :
     ListAdapter<Applicable, ApplicableListAdapter.ApplicableViewHolder>(DiffCallback) {
 
     class ApplicableViewHolder(
-        var binding: ListViewItemBinding
+        private var binding: ListViewItemBinding
     ) : RecyclerView.ViewHolder(binding.root){
         fun bind(clickListener: ApplicableListener, applicable: Applicable) {
             binding.applicable = applicable
@@ -23,7 +23,7 @@ class ApplicableListAdapter (val clickListener: ApplicableListener) :
 
     companion object DiffCallback : DiffUtil.ItemCallback<Applicable>() {
         override fun areItemsTheSame(oldItem: Applicable, newItem: Applicable): Boolean {
-            return oldItem.code == newItem.code
+            return oldItem == newItem
         }
         override fun areContentsTheSame(oldItem: Applicable, newItem: Applicable): Boolean {
             return oldItem.label == newItem.label

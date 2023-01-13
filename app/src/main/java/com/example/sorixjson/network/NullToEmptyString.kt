@@ -1,6 +1,5 @@
-package com.example.amphibians.network
+package com.example.sorixjson.network
 
-import android.util.Log
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.JsonQualifier
 import com.squareup.moshi.ToJson

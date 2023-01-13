@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.sorixjson.model.JsonViewModel" />
+            type="com.example.sorixjson.ui.JsonViewModel" />
     </data>
 
     <FrameLayout

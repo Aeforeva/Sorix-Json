@@ -1,11 +1,13 @@
-package com.example.sorixjson.model
+package com.example.sorixjson.ui
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sorixjson.R
+import com.example.sorixjson.model.Applicable
+import com.example.sorixjson.model.SomeData
+import com.example.sorixjson.network.SorixApi
 import kotlinx.coroutines.launch
 
 enum class SorixApiStatus { LOADING, ERROR, DONE }

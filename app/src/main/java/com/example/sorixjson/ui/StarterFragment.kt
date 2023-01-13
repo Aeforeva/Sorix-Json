@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.sorixjson.R
+import com.example.sorixjson.adapters.ApplicableListAdapter
+import com.example.sorixjson.adapters.ApplicableListener
 import com.example.sorixjson.databinding.FragmentStarterBinding
-import com.example.sorixjson.model.JsonViewModel
 
 class StarterFragment : Fragment() {
 
@@ -23,7 +23,7 @@ class StarterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentStarterBinding.inflate(inflater)
 //        binding = FragmentStarterBinding.inflate(inflater)
         viewModel.getJson()

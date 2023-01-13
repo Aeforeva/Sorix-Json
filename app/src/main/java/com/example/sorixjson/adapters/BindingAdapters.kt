@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.sorixjson
+package com.example.sorixjson.adapters
 
 import android.view.View
 import android.widget.ImageView
@@ -21,9 +21,9 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.sorixjson.ui.ApplicableListAdapter
+import com.example.sorixjson.R
 import com.example.sorixjson.model.Applicable
-import com.example.sorixjson.model.SorixApiStatus
+import com.example.sorixjson.ui.SorixApiStatus
 
 
 /**

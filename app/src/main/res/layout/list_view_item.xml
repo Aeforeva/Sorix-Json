@@ -25,7 +25,7 @@
 
         <variable
             name="clickListener"
-            type="com.example.sorixjson.ui.ApplicableListener" />
+            type="com.example.sorixjson.adapters.ApplicableListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

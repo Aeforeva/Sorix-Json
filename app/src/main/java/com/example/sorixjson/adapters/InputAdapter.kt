@@ -1,4 +1,4 @@
-package com.example.sorixjson.ui
+package com.example.sorixjson.adapters
 
 import android.text.InputType
 import android.util.Log
@@ -12,7 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class InputAdapter(
-    private val context: SelectedFragment,
+
     private val dataset: List<InputElement>?
 ) : RecyclerView.Adapter<InputAdapter.ItemViewHolder>() {
 
@@ -24,7 +24,7 @@ class InputAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         // create a new view
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_view_item2, parent, false)
+            .inflate(R.layout.list_view_input, parent, false)
 
         return ItemViewHolder(adapterLayout)
     }
@@ -33,13 +33,13 @@ class InputAdapter(
         val item = dataset?.get(position)
 
         when (item?.name) {
-//            "number" -> holder.textView.hint = "Номер карты"
-//            "expiryMonth" -> holder.textView.hint = "месяц"
-//            "expiryYear" -> holder.textView.hint = "год"
+//            "number" -> holder.textView.hint = "card number"
+//            "expiryMonth" -> holder.textView.hint = "month"
+//            "expiryYear" -> holder.textView.hint = "year"
 //            "verificationCode" -> holder.textView.hint = "CVV"
-//            "holderName" -> holder.textView.hint = "Имя держателя карты"
-//            "iban" -> holder.textView.hint = "ИБАН"
-//            "bic" -> holder.textView.hint = "БИК"
+//            "holderName" -> holder.textView.hint = "name"
+//            "iban" -> holder.textView.hint = "iban"
+//            "bic" -> holder.textView.hint = "bic"
             else -> holder.textView.hint = item?.name
         }
 
