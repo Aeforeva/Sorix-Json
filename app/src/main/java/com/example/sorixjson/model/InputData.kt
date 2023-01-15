@@ -1,10 +1,9 @@
 package com.example.sorixjson.model
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 //@JsonClass(generateAdapter = true)
-data class Response(
+data class InputData(
     var number: Int? = null,
     var expiryMonth: Int? = null,
     var expiryYear: Int? = null,

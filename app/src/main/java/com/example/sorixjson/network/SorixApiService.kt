@@ -1,10 +1,10 @@
 package com.example.sorixjson.network
 
-import com.example.sorixjson.model.Response
+import com.example.sorixjson.model.InputData
 import com.example.sorixjson.model.SomeData
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
@@ -39,10 +39,12 @@ private val sendTest = Retrofit.Builder()
 interface SorixApiService {
     @GET("Aeforeva/b5784ef0872236ce73426bd5cbe8872b/raw/953feba1730dbbc5f5273d56dcca820bcd00d95a/sorix.json")
     suspend fun getSorixJson(): SomeData
+
     @POST("/post")
-    suspend fun postObj(@Body response: Response): retrofit2.Response<Response>
+    suspend fun postObj(@Body inputData: InputData): Response<InputData>
+
     @PUT("/put")
-    suspend fun putObj(@Body response: Response)
+    suspend fun putObj(@Body inputData: InputData): Response<InputData>
 }
 
 object SorixApi {

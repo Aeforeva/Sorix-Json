@@ -7,11 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.sorixjson.adapters.InputAdapter
 import com.example.sorixjson.databinding.FragmentSelectedBinding
 import com.example.sorixjson.model.InputElement
-import com.example.sorixjson.model.Response
+import com.example.sorixjson.model.InputData
 import com.google.android.material.textfield.TextInputEditText
 
 class SelectedFragment : Fragment() {
@@ -30,7 +31,7 @@ class SelectedFragment : Fragment() {
          * No need to observe data change here, [myDataset] is static.
          * But it might be needed if we try to get input values somehow different
          * */
-//        binding.lifecycleOwner = this
+//        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         Log.i("Applicable = ", viewModel.applicable.value.toString())
 
@@ -53,14 +54,35 @@ class SelectedFragment : Fragment() {
             viewModel.putResponse()
         }
 
+        viewModel.sendStatus.observe(viewLifecycleOwner) {
+            when (it) {
+                SorixApiStatus.LOADING -> Toast.makeText(
+                    context,
+                    "Sending...",
+                    Toast.LENGTH_SHORT
+                ).show()
+                SorixApiStatus.DONE -> Toast.makeText(
+                    context,
+                    "Done\nStatus Code: ${viewModel.statusCode.value}",
+                    Toast.LENGTH_LONG
+                ).show()
+                SorixApiStatus.ERROR -> Toast.makeText(
+                    context,
+                    viewModel.errorMsg.value.toString(),
+                    Toast.LENGTH_LONG
+                ).show()
+                else -> return@observe
+            }
+        }
+
         return binding.root
     }
 
     private fun getInputAndLog(myDataset: List<InputElement>?) {
         getInputValuesAsString(myDataset)
-        getInputValuesAsResponse(myDataset)
+        getInputValuesAsInputData(myDataset)
         Log.d("outPutString = ", viewModel.outPutString.toString())
-        Log.d("response = ", viewModel.response.toString())
+        Log.d("response = ", viewModel.inputData.toString())
     }
 
     private fun getInputValuesAsString(myDataset: List<InputElement>?) {
@@ -76,26 +98,25 @@ class SelectedFragment : Fragment() {
         }
     }
 
-    private fun getInputValuesAsResponse(myDataset: List<InputElement>?) {
+    private fun getInputValuesAsInputData(myDataset: List<InputElement>?) {
         if (myDataset != null) {
             var id = 0
-            var editText: TextInputEditText?
-            val resp = Response()
+            val resp = InputData()
             while (id < myDataset.size) {
-                editText = view?.findViewById(id)
+                val editText: TextInputEditText? = view?.findViewById(id)
+                val string = editText?.text.toString()
                 when (editText?.hint.toString()) {
-                    "number" -> resp.number = editText?.text.toString().toIntOrNull()
-                    "expiryMonth" -> resp.expiryMonth = editText?.text.toString().toIntOrNull()
-                    "expiryYear" -> resp.expiryYear = editText?.text.toString().toIntOrNull()
-                    "verificationCode" -> resp.verificationCode =
-                        editText?.text.toString().toIntOrNull()
-                    "holderName" -> resp.holderName = noEmptyString(editText?.text.toString())
-                    "iban" -> resp.iban = noEmptyString(editText?.text.toString())
-                    "bic" -> resp.bic = noEmptyString(editText?.text.toString())
+                    "number" -> resp.number = string.toIntOrNull()
+                    "expiryMonth" -> resp.expiryMonth = string.toIntOrNull()
+                    "expiryYear" -> resp.expiryYear = string.toIntOrNull()
+                    "verificationCode" -> resp.verificationCode = string.toIntOrNull()
+                    "holderName" -> resp.holderName = noEmptyString(string)
+                    "iban" -> resp.iban = noEmptyString(string)
+                    "bic" -> resp.bic = noEmptyString(string)
                 }
                 id++
             }
-            viewModel.response = resp
+            viewModel.inputData = resp
         }
     }
 
