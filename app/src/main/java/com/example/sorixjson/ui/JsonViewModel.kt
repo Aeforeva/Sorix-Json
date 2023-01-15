@@ -47,13 +47,13 @@ class JsonViewModel : ViewModel() {
             _status.value = SorixApiStatus.LOADING
             try {
                 _sorixJson.value = SorixApi.retrofitService.getSorixJson()
-                Log.i("Sorix API JSON", _sorixJson.value.toString())
-                _applicables.value = _sorixJson.value?.networks?.applicable
-                Log.i("Sorix API applicables", _applicables.value.toString())
+                Log.i("Sorix API JSON", sorixJson.value.toString())
+                _applicables.value = sorixJson.value?.networks?.applicable
+                Log.i("Sorix API applicables", applicables.value.toString())
                 _status.value = SorixApiStatus.DONE
             } catch (e: Exception) {
                 _errorMsg.value = e.message
-                Log.i("Sorix API ERROR", _errorMsg.value.toString())
+                Log.i("Sorix API ERROR", errorMsg.value.toString())
                 _status.value = SorixApiStatus.ERROR
             }
         }
