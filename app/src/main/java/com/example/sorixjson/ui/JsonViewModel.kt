@@ -34,7 +34,7 @@ class JsonViewModel : ViewModel() {
     val applicable: LiveData<Applicable> = _applicable
 
     var inputData = InputData()
-    val outPutString = mutableListOf<String>()
+    var outputString = ""
     val statusCode = MutableLiveData<Int>()
 
     // We can call getJson() here or in fragment
@@ -63,7 +63,7 @@ class JsonViewModel : ViewModel() {
         viewModelScope.launch {
             _sendStatus.value = SorixApiStatus.LOADING
             try {
-                val post = SorixApi.retrofitServiceSend.postObj(inputData)
+                val post = SorixApi.retrofitServiceSend.postJson(inputData)
                 statusCode.value = post.code()
                 _sendStatus.value = SorixApiStatus.DONE
                 Log.i("Response", post.toString())
@@ -72,7 +72,7 @@ class JsonViewModel : ViewModel() {
                 _sendStatus.value = SorixApiStatus.ERROR
                 Log.i("Sorix API ERROR", e.toString())
             } finally {
-                _sendStatus.value = SorixApiStatus.NONE
+                _sendStatus.value = SorixApiStatus.NONE // Or nullable + null instead of .NONE
             }
         }
     }
@@ -81,7 +81,15 @@ class JsonViewModel : ViewModel() {
         viewModelScope.launch {
             _sendStatus.value = SorixApiStatus.LOADING
             try {
-                val put = SorixApi.retrofitServiceSend.putObj(inputData)
+                val put = SorixApi.retrofitServiceSend.putUrlEncoded(
+                    number = inputData.number,
+                    expiryMonth = inputData.expiryMonth,
+                    expiryYear = inputData.expiryYear,
+                    verificationCode = inputData.verificationCode,
+                    holderName = inputData.holderName,
+                    iban = inputData.iban,
+                    bic = inputData.bic
+                )
                 statusCode.value = put.code()
                 _sendStatus.value = SorixApiStatus.DONE
                 Log.i("Response", put.toString())

@@ -1,7 +1,6 @@
 package com.example.sorixjson.ui
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -82,7 +81,7 @@ class SelectedFragment : Fragment() {
     private fun getInputAndLog(myDataset: List<InputElement>?) {
         getInputValuesAsString(myDataset)
         getInputValuesAsInputData(myDataset)
-        Log.d("outPutString = ", viewModel.outPutString.toString())
+        Log.d("outputString = ", viewModel.outputString)
         Log.d("response = ", viewModel.inputData.toString())
     }
 
@@ -90,12 +89,15 @@ class SelectedFragment : Fragment() {
         if (myDataset != null) {
             var id = 0
             var editText: TextInputEditText?
-            viewModel.outPutString.clear()
+            var inputString = ""
             while (id < myDataset.size) {
                 editText = view?.findViewById(id)
-                viewModel.outPutString.add("{${editText?.hint.toString()} : \"${editText?.text.toString()}\"}")
+                if (editText?.text.toString() != "") {
+                    inputString += "${editText?.hint} : ${editText?.text}\n"
+                }
                 id++
             }
+            viewModel.outputString = inputString
         }
     }
 
@@ -125,15 +127,13 @@ class SelectedFragment : Fragment() {
         val intent = Intent(Intent.ACTION_SEND)
             .setType("text/plain")
             .putExtra(Intent.EXTRA_SUBJECT, viewModel.applicable.value?.label.toString())
-            .putExtra(Intent.EXTRA_TEXT, viewModel.outPutString.toString())
-            .addCategory(Intent.CATEGORY_DEFAULT)
-        // TODO Check newer version
+            .putExtra(Intent.EXTRA_TEXT, viewModel.outputString)
+        val sendText = Intent.createChooser(intent, null)
         if (intent.resolveActivity(requireActivity().packageManager) != null) {
-            startActivity(intent)
+            startActivity(sendText)
         } else {
             Toast.makeText(requireContext(), "no app to handle it", Toast.LENGTH_SHORT).show()
         }
-
 //        @Suppress("DEPRECATION")
 //        if (requireActivity().packageManager.resolveActivity(intent, 0) != null) {
 //            startActivity(intent)

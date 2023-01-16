@@ -8,6 +8,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
@@ -41,10 +43,19 @@ interface SorixApiService {
     suspend fun getSorixJson(): SomeData
 
     @POST("/post")
-    suspend fun postObj(@Body inputData: InputData): Response<InputData>
+    suspend fun postJson(@Body inputData: InputData): Response<InputData>
 
+    @FormUrlEncoded
     @PUT("/put")
-    suspend fun putObj(@Body inputData: InputData): Response<InputData>
+    suspend fun putUrlEncoded(
+        @Field("number") number: Int?,
+        @Field("expiryMonth") expiryMonth: Int?,
+        @Field("expiryYear") expiryYear: Int?,
+        @Field("verificationCode") verificationCode: Int?,
+        @Field("holderName") holderName: String?,
+        @Field("iban") iban: String?,
+        @Field("bic") bic: String?
+    ): Response<InputData>
 }
 
 object SorixApi {
